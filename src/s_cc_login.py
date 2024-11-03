@@ -19,7 +19,7 @@ with requests.Session() as s:
     }
 
     # Fazer uma solicitação GET à página inicial para obter o CSRF token
-    context = s.get(login_url, verify=False)  # proxies=proxy,
+    context = s.get(login_url, proxies=proxy, verify=False)  # proxies=proxy,
 
     # Procurar pelo CSRF token
     soup = BeautifulSoup(context.content, 'html.parser')
@@ -40,11 +40,13 @@ with requests.Session() as s:
     }
 
     # Fazer uma solicitação POST para o endpoint de login
-    login = s.post(url=login_url, data=payload, verify=False)  # proxies=proxy,
+    login = s.post(url=login_url, data=payload, proxies=proxy,
+                   verify=False)  # proxies=proxy,
 
     if login.status_code == 200:
         print("Login bem-sucedido")
-        dashboard = s.get(url=dashboard_url, verify=False)  # proxies=proxy,
+        dashboard = s.get(url=dashboard_url, proxies=proxy,
+                          verify=False)  # proxies=proxy,
         if dashboard.status_code == 200:
             print(
                 f'Sucesso ao receber os dados de Dashboard: Status Code - {dashboard.status_code}')
