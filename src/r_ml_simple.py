@@ -7,7 +7,7 @@ class MercadoLivreCrawler:
     def execute_command(self, query):
         url = f"https://lista.mercadolivre.com.br/{query.replace(' ', '-')}"
         headers = {
-            "User-Agent": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
         }
 
         response = requests.get(url, headers=headers)
@@ -43,7 +43,7 @@ class MercadoLivreCrawler:
 
 # Exemplo de utilização
 crawler = MercadoLivreCrawler()
-dataframe = crawler.send_dataframe("janela aluminio")
+dataframe = crawler.send_dataframe("porta-aluminio")
 if dataframe is not None:
     print(dataframe)
 else:
